@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs'); %>
+</head>
+
+<body>
+
+    <%- include('partials/sidebar.ejs'); %>
+        <div id="main">
+            <%- include('partials/header.ejs'); %>
+                <div class="page-content">
+                    <% user.forEach(function(user){ %>
+                        <%- user.username %> <br>
+                      <% }); %>
+                </div>
+        </div>
+        <%- include('partials/foot.ejs'); %>
+
+</body>
+
+</html>

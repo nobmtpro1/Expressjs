@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/sidebar.ejs'); %>
+        <div id="main">
+            <%- include('../partials/header.ejs'); %>
+                <div class="page-content">
+                    <section class="section">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Table &nbsp;<a href="<%- res.locals.route.cms_ticket_add  %> "
+                                        class="btn btn-sm rounded-pill btn-outline-primary">&nbsp;&nbsp; Add
+                                        &nbsp;&nbsp;</a></h4>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped" id="table1">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Type</th>
+                                            <th>Name</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% tickets.forEach(e=> { %>
+                                            <tr>
+                                                <td>
+                                                    <%- e?.id %>
+                                                </td>
+                                                <td>
+                                                    <%- e?.type %>
+                                                </td>
+                                                <td>
+                                                    <%- e?.name %>
+                                                </td>
+                                                <td>
+                                                    <%- e?.is_active %>
+                                                </td>
+                                                <td>
+                                                    <a href="<%- res.locals.route.cms_ticket_edit.replace(':id',e?.id)
+                                                        %>" class="btn btn-sm btn-primary">
+                                                        Edit </a>
+                                                    <a data-id=" <%- e?.id %>"
+                                                        class="btn btn-sm btn-danger delete">Delete</a>
+                                                </td>
+                                            </tr>
+                                            <%}); %>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+        </div>
+        <%- include('../partials/foot.ejs'); %>
+            <script>
+                $( document ).on( 'click', '.delete', function ()
+                {
+                    var element = $( this ).parents( 'tr' )
+                    var id = $( this ).data( 'id' )
+                    $.ajax( {
+                        url: '<%- res.locals.route.cms_ticket_delete %>',
+                        data: JSON.stringify( {
+                            id: id
+                        } ),
+                        processData: false,
+                        contentType: 'application/json',
+                        type: 'POST',
+                        success: function ( data )
+                        {
+                            console.log( data )
+                            alertify.success( 'Successfully' );
+                            element.hide()
+                        },
+                        error: function ( data, textStatus, jqXHR )
+                        {
+                            console.log( data.responseJSON )
+                            alertify.error( data.responseJSON );
+                        },
+                    } );
+                    return false
+                } )
+            </script>
+
+</body>
+
+</html>

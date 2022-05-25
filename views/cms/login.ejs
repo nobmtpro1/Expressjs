@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base href="<%- req.protocol + '://' + req.get('host') %>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cms-html/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="cms-html/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="cms-html/assets/css/app.css">
+    <link rel="stylesheet" href="cms-html/assets/css/pages/auth.css">
+    <link rel="shortcut icon" href="favicon_aim-1-270x270.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="auth">
+
+        <div class="row h-100">
+            <div class="col-lg-5 col-12">
+                <div id="auth-left">
+                    <h1 class="auth-title">Log in.</h1>
+
+                    <form action="" method="post" id="form">
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="text" class="form-control form-control-xl" placeholder="Username" required
+                                name="username" value="">
+                            <div class="form-control-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input type="password" class="form-control form-control-xl" placeholder="Password" required
+                                name="password" value="">
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                        </div>
+                        <div class="form-check form-check-lg d-flex align-items-end">
+                            <input class="form-check-input me-2" type="checkbox" value="1" id="flexCheckDefault"
+                                name="remember">
+                            <label class="form-check-label text-gray-600" for="flexCheckDefault">
+                                Keep me logged in
+                            </label>
+                        </div>
+                        <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div id="auth-right">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $( document ).on( 'submit', '#form', function ()
+        {
+            var data = {}
+            data.username = $( '[name="username"]' ).val()
+            data.password = $( '[name="password"]' ).val()
+            console.log(data)
+
+            $.ajax( {
+                url: '<%- res.locals.route.cms_login %>',
+                data: JSON.stringify(data),
+                processData: false,
+                contentType: 'application/json',
+                type: 'POST',
+                success: function ( data )
+                {
+                    window.location.href = '<%- res.locals.route.cms_dashboard %>'
+                },
+                error: function ( data, textStatus, jqXHR )
+                {
+                    var error = data.responseJSON.message
+                    alert( error )
+                },
+            } );
+            return false
+        } )
+    </script>
+</body>
+
+</html>

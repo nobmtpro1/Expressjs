@@ -1,0 +1,105 @@
+<div id="sidebar" class="active">
+    <div class="sidebar-wrapper active">
+        <div class="sidebar-header">
+            <div class="d-flex justify-content-between">
+                <div class="logo" style="width:200px;height:auto">
+                    <a href="<%- res.locals.route.cms_dashboard %>" style="width:100px;height:auto"><img
+                            style="width:100px;height:auto" src="cms-html/assets/images/logo/logo.svg" alt="Logo"
+                            srcset=""></a>
+                </div>
+                <div class="toggler">
+                    <a class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <li class="sidebar-title">Menu</li>
+
+                <li class="sidebar-item <% if(req.originalUrl == res.locals.route.cms_dashboard ){ %> active <% } %>">
+                    <a href="<%- res.locals.route.cms_dashboard %>" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <!-- 
+                <li
+                    class="sidebar-item  has-sub @if( Str::contains(request()->url(),[ route('cms.trailer'),route('cms.more_contest'),route('cms.page_content.welcome'),route('cms.page_content.banner'),route('cms.page_content.footer')]))active @endif">
+                    <a class='sidebar-link' style="cursor: pointer">
+                        <i class="bi bi-stack"></i>
+                        <span>Page content</span>
+                    </a>
+                    <ul
+                        class="submenu @if( Str::contains(request()->url(),[ route('cms.trailer'),route('cms.more_contest'),route('cms.page_content.welcome'),route('cms.page_content.banner'),route('cms.page_content.footer')]))active @endif">
+                        <li
+                            class="submenu-item @if( Str::contains(request()->url(),[ route('cms.page_content.banner')]))active @endif">
+                            <a href="{{route('cms.page_content.banner')}}">Home - Banner</a>
+                        </li>
+                        <li
+                            class="submenu-item @if( Str::contains(request()->url(),[ route('cms.trailer')]))active @endif">
+                            <a href="{{route('cms.trailer')}}">Home - Trailer</a>
+                        </li>
+                        <li
+                            class="submenu-item @if( Str::contains(request()->url(),[ route('cms.more_contest')]))active @endif">
+                            <a href="{{route('cms.more_contest')}}">Livestream - More contest</a>
+                        </li>
+                        <li
+                            class="submenu-item @if( Str::contains(request()->url(),[ route('cms.page_content.welcome')]))active @endif">
+                            <a href="{{route('cms.page_content.welcome')}}">Livestream - Welcome</a>
+                        </li>
+                        <li
+                            class="submenu-item @if( Str::contains(request()->url(),[ route('cms.page_content.footer')]))active @endif">
+                            <a href="{{route('cms.page_content.footer')}}">Footer</a>
+                        </li>
+                    </ul>
+                </li> -->
+
+                <li
+                    class="sidebar-item <% if(req.originalUrl.includes(res.locals.route.cms_ticket)  ){ %> active <% } %>">
+                    <a class='sidebar-link' style="cursor: pointer" href="<%- res.locals.route.cms_ticket %>">
+                        <i class="bi bi-stack"></i>
+                        <span>Ticket</span>
+                    </a>
+                </li>
+
+                <!-- <li class="sidebar-item @if( Str::contains(request()->url(),[ route('cms.order')]))active @endif">
+                    <a class='sidebar-link' style="cursor: pointer" href="{{route('cms.order')}}">
+                        <i class="bi bi-stack"></i>
+                        <span>Order</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item @if( Str::contains(request()->url(),[ route('cms.check_payment_log')]))active @endif">
+                    <a class='sidebar-link' style="cursor: pointer" href="{{route('cms.check_payment_log')}}">
+                        <i class="bi bi-stack"></i>
+                        <span>Check payment log</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item @if( Str::contains(request()->url(),[ route('cms.generate_ticket')]))active @endif">
+                    <a class='sidebar-link' style="cursor: pointer" href="{{route('cms.generate_ticket')}}">
+                        <i class="bi bi-stack"></i>
+                        <span>Generate ticket</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item @if( Str::contains(request()->url(),[ route('cms.sold_ticket')]))active @endif">
+                    <a class='sidebar-link' style="cursor: pointer" href="{{route('cms.sold_ticket')}}">
+                        <i class="bi bi-stack"></i>
+                        <span>Sold ticket</span>
+                    </a>
+                </li>
+
+                <li
+                    class="sidebar-item @if( Str::contains(request()->url(),[ route('cms.check_ticket')]))active @endif">
+                    <a class='sidebar-link' style="cursor: pointer" href="{{route('cms.check_ticket')}}">
+                        <i class="bi bi-stack"></i>
+                        <span>Check ticket</span>
+                    </a>
+                </li> -->
+
+            </ul>
+        </div>
+        <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+    </div>
+</div>

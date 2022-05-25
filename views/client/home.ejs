@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include('./partials/head.ejs'); %>
+</head>
+
+<body class="body">
+	<% if (req?.session?.order) { %>
+		<%- include('./popup/bank.ejs',req.session.order); %>
+			<% } %>
+				<%- include('./partials/component.ejs'); %>
+
+					<%- include('./partials/header.ejs'); %>
+
+						<main class="page-home">
+							<section class="banner">
+								<img src="html/img/banner.jpg" alt="" class="pc">
+								<img src="html/img/banner.jpg" alt="" class="mb">
+							</section>
+							<section class="trailer">
+								<div class="left">
+									<h1 class="title">Vietnam Young Lions</h1>
+									<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+										Ultricies
+										enim
+										et,
+										lorem
+										eget elementum ultrices. Ornare neque massa, id elit, venenatis nec interdum.
+										Neque
+										ipsum
+										amet
+										leo
+										mi nullam vulputate. Pretium arcu feugiat magna Lorem ipsum dolor sit amet,
+										consectetur
+										adipiscing
+										elit. Ultricies enim et, lorem eget elementum ultrices. Ornare neque massa, id
+										elit,
+										venenatis
+										nec
+										interdum. Neque ipsum amet leo mi nullam vulputate. Pretium arcu feugiat magna
+										eget
+										elementum
+										ultrices. Ornare neque massa, id elit, venenatis nec interdum. Neque ipsum amet
+										leo</p>
+									<a class="more" href="">Xem thêm</a>
+								</div>
+								<div class="right">
+									<iframe width="200" height="200" src="https://www.youtube.com/embed/IsNYctPeZNg"
+										title="YouTube video player" frameborder="0"
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+										allowfullscreen></iframe>
+								</div>
+							</section>
+							<section class="booking">
+								<h1 class="title">Đặt vé</h1>
+								<div class="content">
+									<div class="left">
+										<div class="box active">
+											<div class="head">Online</div>
+											<div class="items ">
+												<% tickets?.filter(e=> e.type == 0)?.forEach(function(e){ %>
+													<div class="item">
+														<div class="image">
+															<img src="html/img/item.jpg" alt="">
+															<div class="label online">
+																<%- e?.type==0 ? 'Online' : 'Offline' %>
+															</div>
+														</div>
+														<div class="text">
+															<div class="left">
+																<h2 class="name">
+																	<%- e?.name %>
+																</h2>
+																<div class="info">
+																	<div class="info-item">
+																		<div class="image">
+																			<img src="html/img/lich.svg" alt="">
+																		</div>
+																		<div class="text">
+																			<%- moment(e?.date).format('DD.MM.YYYY') %>
+																		</div>
+																	</div>
+																	<div class="info-item">
+																		<div class="image">
+																			<img src="html/img/clock.svg" alt="">
+																		</div>
+																		<div class="text">
+																			<%- moment(`01/01/2000
+																				${e?.from}`).format(`H:mm`) %>
+																				- <%- moment(`01/01/2000
+																					${e?.to}`).format(`H:mm`) %>
+																		</div>
+																	</div>
+																	<div class="info-item">
+																		<div class="image">
+																			<img src="html/img/user.svg" alt="">
+																		</div>
+																		<div class="text">
+																			<%- e?.SoldTickets?.length %>
+																		</div>
+																	</div>
+																</div>
+																<div class="web">
+																	<div class="image">
+																		<img src="html/img/map.svg" alt="">
+																	</div>
+																	<div class="text">
+																		<%- e?.address %>
+																	</div>
+																</div>
+																<div class="status">
+																	<span>
+																		<%- `${e?.quantity -
+																			e?.SoldTickets?.length}/${e?.quantity}` %>
+																	</span>
+																</div>
+															</div>
+															<div class="right">
+																<div class="quantity">
+																	<button class="minus">-</button>
+																	<input data-id="<%- e?.id %>" class="js-quantity"
+																		type="text" value="0">
+																	<button class="plus">+</button>
+																</div>
+																<div class="status-mb">
+																	<span>
+																		<%- `${e?.quantity -
+																			e?.SoldTickets?.length}/${e?.quantity}` %>
+																	</span>
+																</div>
+																<div class="price">
+																	<%- formatPrice(e?.price) %> VNĐ
+																</div>
+															</div>
+														</div>
+													</div>
+													<% });%>
+											</div>
+										</div>
+										<div class="box active">
+											<div class="head">Offline</div>
+											<div class="items ">
+												<% tickets?.filter(e=> e.type == 1)?.forEach(function(e){ %>
+													<div class="item">
+														<div class="image">
+															<img src="html/img/item.jpg" alt="">
+															<div class="label online">
+																<%- e?.type==0 ? 'Online' : 'Offline' %>
+															</div>
+														</div>
+														<div class="text">
+															<div class="left">
+																<h2 class="name">
+																	<%- e?.name %>
+																</h2>
+																<div class="info">
+																	<div class="info-item">
+																		<div class="image">
+																			<img src="html/img/lich.svg" alt="">
+																		</div>
+																		<div class="text">
+																			<%- moment(e?.date).format('DD.MM.YYYY') %>
+																		</div>
+																	</div>
+																	<div class="info-item">
+																		<div class="image">
+																			<img src="html/img/clock.svg" alt="">
+																		</div>
+																		<div class="text">
+																			<%- moment(`01/01/2000
+																				${e?.from}`).format(`H:mm`) %>
+																				- <%- moment(`01/01/2000
+																					${e?.to}`).format(`H:mm`) %>
+																		</div>
+																	</div>
+																	<div class="info-item">
+																		<div class="image">
+																			<img src="html/img/user.svg" alt="">
+																		</div>
+																		<div class="text">
+																			<%- e?.SoldTickets?.length %>
+																		</div>
+																	</div>
+																</div>
+																<div class="web">
+																	<div class="image">
+																		<img src="html/img/map.svg" alt="">
+																	</div>
+																	<div class="text">
+																		<%- e?.address %>
+																	</div>
+																</div>
+																<div class="status">
+																	<span>
+																		<%- `${e?.quantity -
+																			e?.SoldTickets?.length}/${e?.quantity}` %>
+																	</span>
+																</div>
+															</div>
+															<div class="right">
+																<div class="quantity">
+																	<button class="minus">-</button>
+																	<input data-id="<%- e?.id %>" class="js-quantity"
+																		type="text" value="0">
+																	<button class="plus">+</button>
+																</div>
+																<div class="status-mb">
+																	<span>
+																		<%- `${e?.quantity -
+																			e?.SoldTickets?.length}/${e?.quantity}` %>
+																	</span>
+																</div>
+																<div class="price">
+																	<%- formatPrice(e?.price) %> VNĐ
+																</div>
+															</div>
+														</div>
+													</div>
+													<% });%>
+											</div>
+										</div>
+									</div>
+									<div class="right">
+										<div class="info">
+											<div class="head">
+												<h2 class="title">
+													Thông tin mua hàng
+												</h2>
+												<div class="edit"><img src="html/img/sua.svg" alt=""></div>
+											</div>
+											<form class="content">
+												<div class="input">
+													<input type="text" placeholder="Tên" class="js-name">
+												</div>
+												<div class="input">
+													<input type="text" placeholder="Số điện thoại" class="js-phone">
+												</div>
+												<div class="input">
+													<input type="text" placeholder="Email" class="js-email">
+												</div>
+											</form>
+										</div>
+										<div class="total">
+											<h2 class="title">Tổng cộng</h2>
+											<div class="row">
+												<div class="col">
+													Tổng đơn hàng (<span class="js-quantityAll">0</span> sản
+													phẩm)
+												</div>
+												<div class="col">
+													<span class="js-total">0</span> đ
+												</div>
+											</div>
+											<div class="row">
+												<div class="col">
+													Mua cho Doanh nghiệp
+												</div>
+												<div class="col">
+													<input type="checkbox" hidden>
+													<div class="switch">
+														<div class="switch-circle">
+
+														</div>
+													</div>
+												</div>
+											</div>
+											<form class="content" style="display: none">
+												<div class="input">
+													<input type="text" placeholder="Tên công ty">
+												</div>
+												<div class="input">
+													<input type="text" placeholder="Địa chỉ">
+												</div>
+												<div class="input">
+													<input type="text" placeholder="Mail">
+												</div>
+												<div class="input">
+													<input type="text" placeholder="MST">
+												</div>
+											</form>
+											<div class="row">
+												<div class="col">
+													Tổng cộng
+												</div>
+												<div class="col">
+													<span class="js-total">0</span> đ
+												</div>
+											</div>
+											<div class="payment">
+												Phương thức thanh toán
+												<div class="radio">
+													<div class="input checked">
+														<input type="radio" name="fav_language" value="0" checked>
+														<label for="html">Thanh toán bằng ví điện tử
+															MOMO</label>
+													</div>
+													<!-- <div class="input">
+                                            <input type="radio" name="fav_language" value="1">
+                                            <label for="html">Chuyển khoản ngân hàng ACB</label>
+                                        </div> -->
+												</div>
+											</div>
+											<div class="button">
+												<button class="js-checkout">Thanh toán</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+							<section class="check-booking">
+								<div class="box">
+									<div class="left">
+										<h1 class="title">Kiểm tra đặt vé</h1>
+										<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Ultricies
+											enim
+											et,
+											lorem
+											eget elementum ultrices. Ornare neque massa, id elit, venenatis nec
+											interdum. Neque
+											ipsum
+											amet
+											leo
+											mi nullam vulputate. Pretium arcu feugiat magna </p>
+									</div>
+									<form class="right">
+										<input type="text">
+										<p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+											Ultricies
+											enim
+											et,
+											lorem eget elementum
+											ultrices.</p>
+										<button class="button">Gửi lại mail</button>
+									</form>
+								</div>
+							</section>
+						</main>
+
+						<%- include('./partials/footer.ejs'); %>
+
+							<%- include('./partials/foot.ejs'); %>
+								<script>
+									function formatPrice ( price )
+									{
+										return price.toString().replace( /\B(?=(\d{3})+(?!\d))/g, "," );
+									}
+
+									var itv = null
+									function calculate ()
+									{
+										var data = []
+										$( '.js-quantity' ).each( function ()
+										{
+											data.push( {
+												id: $( this ).data( 'id' ),
+												quantity: $( this ).val()
+											} )
+										} )
+										clearTimeout( itv )
+										itv = setTimeout( () =>
+										{
+											$.post( 'calculate', { data }, function ( res )
+											{
+												$( '.js-total' ).html( formatPrice( res.total ) )
+												$( '.js-quantityAll' ).html( res.quantityAll )
+												res?.data?.forEach( e =>
+												{
+													$( `input[data-id="${ e?.id }"]` ).val( e?.quantity )
+												} );
+											} )
+										}, 300 );
+									}
+
+									$( document ).on( 'click', '.plus', function ()
+									{
+										var input = $( this ).parent().find( 'input' )
+										input.val( parseInt( input.val() ) + 1 )
+										calculate()
+									} )
+
+									$( document ).on( 'click', '.minus', function ()
+									{
+										var input = $( this ).parent().find( 'input' )
+										if ( parseInt( input.val() ) - 1 > 0 )
+										{
+											input.val( parseInt( input.val() ) - 1 )
+										}
+										calculate()
+									} )
+
+									$( document ).on( 'click', '.js-checkout', function ()
+									{
+										var name = $( '.js-name' ).val()
+										var phone = $( '.js-phone' ).val()
+										var email = $( '.js-email' ).val()
+
+										if ( !name || !phone || !email )
+										{
+											alert( 'Xin vui lòng điền đầy đủ thông tin' )
+											return false
+										}
+
+										var data = []
+										$( '.js-quantity' ).each( function ()
+										{
+											data.push( {
+												id: $( this ).data( 'id' ),
+												quantity: $( this ).val()
+											} )
+										} )
+
+										if ( !data?.find( e => parseInt( e?.quantity ) > 0 ) )
+										{
+											alert( 'Xin vui lòng chọn mua sản phẩm' )
+											return false
+										}
+
+										$.post( 'checkout', { data, name, phone, email }, function ( res )
+										{
+											$( 'body' ).append( res )
+										} )
+									} )
+
+								</script>
+</body>
+
+</html>

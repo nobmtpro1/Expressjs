@@ -1,0 +1,122 @@
+<div class="component-popup-payment active" id="popup-payment-bank">
+    <div class="box">
+        <h1 class="title">Payment verification - Bank transfer</h1>
+        <h2 class="head">Order</h2>
+        <div class="order">
+            <div class="left">
+                <div class="row name-input">
+                    <%- order?.name %>
+                </div>
+                <div class="row phone-input">
+                    <%- order?.phone %>
+                </div>
+                <div class="row email-input">
+                    <%- order?.email %>
+                </div>
+            </div>
+            <div class="right">
+                <table>
+                    <tr>
+                        <td>Order</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tbody class="order-input">
+                        <% orderDetailArr.forEach(e=> {
+                            var data = JSON.parse(e?.data)
+                            %>
+                            <tr>
+                                <td class="dot">
+                                    <%- data?.name %> (<%- data?.type==0 ? 'Online' : 'Offline' %>)
+                                </td>
+                                <td>
+                                    <%- e?.quantity %> vé
+                                </td>
+                                <td>
+                                    <%- formatPrice(data?.price) %> VNĐ
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td><span class="total-input">
+                                <%- formatPrice(order?.total) %>
+                            </span> VNĐ</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="bank">
+            <div class="rows">
+                <div class="row">
+                    <div class="col">
+                        Beneficiary name
+                    </div>
+                    <div class="col">
+                        CÔNG TY CỔ PHẦN ĐÀO TẠO AIMACADEMY
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Beneficiary account
+                    </div>
+                    <div class="col">
+                        202583039
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Bank
+                    </div>
+                    <div class="col">
+                        Ngân hàng ACB
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Branch
+                    </div>
+                    <div class="col">
+                        Chi nhánh Sài Gòn
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Amount
+                    </div>
+                    <div class="col">
+                        <span class="total-input">
+                            <%- formatPrice(order?.total) %>
+                        </span> VNĐ
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Description
+                    </div>
+                    <div class="col">
+                        AIM<%- order?.id %>
+                    </div>
+                </div>
+            </div>
+            <div class="description">Make sure you fill out the correct details in the bank transfer description. We
+                will send you the ticket codes via email once the payment is completed.
+            </div>
+            <div class="button">
+                <a href="cancel-order" class="cancel-order">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    setTimeout( () =>
+    {
+        $.post( 'pay', { id: '<%- order?.id %>' }, function ( res )
+        {
+            console.log( res )
+            window.location.href = "cancel-order"
+        } )
+    }, 5000 );
+</script>

@@ -1,0 +1,19 @@
+<header class="header">
+    <div class="box">
+        <div class="logo-container">
+            <a class="logo" href="#"><img src="html/img/logo1.svg" alt=""></a>
+            <a class="logo" href="#"><img src="html/img/logo2.svg" alt=""></a>
+        </div>
+        <ul>
+            <li class="<%- ( req.originalUrl == res.locals.route.home ) && 'active' %>"><a
+                    href="<%- res.locals.route.home %> ">Đặt vé</a></li>
+            <li class="<%- ( req.originalUrl == res.locals.route.livestream ) && 'active' %>"><a
+                    href="<%- res.locals.route.livestream %>">Xem livestream</a></li>
+            <li class="<%- ( req.originalUrl.includes(res.locals.route.livestream + '/')  ) && 'active' %>"><a
+                    href="<%- res.locals.route.livestream_detail %>">Cuộc thi</a></li>
+        </ul>
+        <div class="hamburger">
+            <img src="html/img/hamburger.svg" alt="">
+        </div>
+    </div>
+</header>

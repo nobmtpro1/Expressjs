@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head.ejs'); %>
+</head>
+
+<body>
+
+    <%- include('../partials/sidebar.ejs'); %>
+        <div id="main">
+            <%- include('../partials/header.ejs'); %>
+                <div class="page-content">
+                    <section id="basic-vertical-layouts">
+                        <div class="row match-height">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Add</h4>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <form class="form form-vertical" id="form">
+                                                <div id="message"></div>
+                                                <div class="form-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Type <span
+                                                                        class="text-danger">*</span></label>
+                                                                <select class="form-select" name="type">
+                                                                    <option <% if(ticket?.type==0){ %>
+                                                                        selected
+                                                                        <% } %>
+                                                                            value="0">Online
+                                                                    </option>
+                                                                    <option <% if(ticket?.type==1){ %>
+                                                                        selected
+                                                                        <% } %>
+                                                                            value="1">Offline
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Image<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input class="form-control" type="file" name="image">
+                                                                <input class="form-control" disabled value="<%- ticket?.image  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Name<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control" name="name"
+                                                                    value="<%- ticket?.name  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Date<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="date" class="form-control" name="date"
+                                                                    value="<%- ticket?.date  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Time start<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="time" class="form-control" name="from"
+                                                                    value="<%- ticket?.from  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Time end<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="time" class="form-control" name="to"
+                                                                    value="<%- ticket?.to  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Quantity</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="quantity" value="<%- ticket?.quantity  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Address<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control" name="address"
+                                                                    value="<%- ticket?.address  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Price<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="number" class="form-control" name="price"
+                                                                    value="<%- ticket?.price  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Link video<span
+                                                                        class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control"
+                                                                    name="link_video"
+                                                                    value="<%- ticket?.link_video  %>">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Overview<span
+                                                                        class="text-danger">*</span></label>
+                                                                <textarea name="overview" class="form-control" cols="30"
+                                                                    rows="5"><%- ticket?.overview  %></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-group">
+                                                                <label for="first-name-vertical">Active<span
+                                                                        class="text-danger">*</span></label>
+                                                                <select class="form-select" name="is_active">
+                                                                    <option <% if(ticket?.is_active==1){ %>
+                                                                        selected
+                                                                        <% } %> value="1">Active
+                                                                    </option>
+                                                                    <option <% if(ticket?.is_active==0){ %>
+                                                                        selected
+                                                                        <% } %> value="0">Hide
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12 d-flex justify-content-start">
+                                                            <button type="submit"
+                                                                class="btn btn-primary me-1 mb-1">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+        </div>
+        <%- include('../partials/foot.ejs'); %>
+            <script>
+                $( document ).on( 'submit', '#form', function ()
+                {
+                    var formData = new FormData()
+                    formData.append( '_token', $( '[name="_token"]' ).val() )
+                    formData.append( 'type', $( '[name="type"]' ).val() )
+                    formData.append( 'image', $( '[name="image"]' )[ 0 ].files[ 0 ] || '' )
+                    formData.append( 'name', $( '[name="name"]' ).val() )
+                    formData.append( 'date', $( '[name="date"]' ).val() )
+                    formData.append( 'from', $( '[name="from"]' ).val() )
+                    formData.append( 'to', $( '[name="to"]' ).val() )
+                    formData.append( 'quantity', $( '[name="quantity"]' ).val() )
+                    formData.append( 'address', $( '[name="address"]' ).val() )
+                    formData.append( 'price', $( '[name="price"]' ).val() )
+                    formData.append( 'link_video', $( '[name="link_video"]' ).val() )
+                    formData.append( 'overview', $( '[name="overview"]' ).val() )
+                    formData.append( 'is_active', $( '[name="is_active"]' ).val() )
+
+                    $.ajax( {
+                        url: '',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        type: 'POST',
+                        success: function ( data )
+                        {
+                            console.log( data )
+                            alertify.success( 'Successfully' );
+                        },
+                        error: function ( data, textStatus, jqXHR )
+                        {
+                            console.log( data.responseJSON )
+                            alertify.error( data.responseJSON );
+                        },
+                    } );
+                    return false
+                } )
+            </script>
+</body>
+
+</html>
