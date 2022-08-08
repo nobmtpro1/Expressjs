@@ -1,7 +1,7 @@
 var express = require( 'express' );
-var DashboardController = require( '../controllers/Cms/DashboardController' );
-var TicketController = require( '../controllers/Cms/TicketController' );
-var AccountController = require( '../controllers/Cms/AccountController' );
+var DashboardController = require( '../controllers/cms/DashboardController' );
+var TicketController = require( '../controllers/cms/TicketController' );
+var AccountController = require( '../controllers/cms/AccountController' );
 var router = express.Router();
 var { cms_login, cms_logout, cms_change_password, cms_dashboard, cms_ticket, cms_ticket_add, cms_ticket_edit, cms_ticket_delete } = require( '../configs/routes' )
 var authCms = require( '../middlewares/authCms' )

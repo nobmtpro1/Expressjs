@@ -3,7 +3,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Tickets', {
       id: {
-        allowNull: false,
+        allowNull: true,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
@@ -14,23 +14,23 @@ module.exports = {
       },
       image: {
         type: Sequelize.STRING,
-        allowNull: null,
+        allowNull: true,
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: null,
+        allowNull: true,
       },
       date: {
         type: Sequelize.DATEONLY,
-        allowNull: null,
+        allowNull: true,
       },
       from: {
         type: Sequelize.TIME,
-        allowNull: null,
+        allowNull: true,
       },
       to: {
         type: Sequelize.TIME,
-        allowNull: null,
+        allowNull: true,
       },
       quantity: {
         type: Sequelize.INTEGER,
@@ -38,7 +38,7 @@ module.exports = {
       },
       address: {
         type: Sequelize.STRING,
-        allowNull: null,
+        allowNull: true,
       },
       price: {
         type: Sequelize.INTEGER,
@@ -46,22 +46,22 @@ module.exports = {
       },
       link_video: {
         type: Sequelize.STRING,
-        allowNull: null,
+        allowNull: true,
       },
       overview: {
         type: Sequelize.STRING,
-        allowNull: null,
+        allowNull: true,
       },
       is_active: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
       },
       createdAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       },
       updatedAt: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE
       }
     });
