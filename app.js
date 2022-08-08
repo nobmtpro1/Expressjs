@@ -1,7 +1,6 @@
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-var logger = require("morgan");
 const configRouter = require("./routes/index");
 var session = require("express-session");
 var app = express();
@@ -20,9 +19,6 @@ app.use(
         resave: false,
     })
 );
-
-// log
-app.use(logger("dev"));
 
 // parse request
 app.use(express.json());

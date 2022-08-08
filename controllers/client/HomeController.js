@@ -11,10 +11,12 @@ const { home } = require("../../configs/routes");
 var nodemailer = require("nodemailer");
 var ejs = require("ejs");
 var fs = require("fs");
+const logging = require('../../configs/logging')
 
 class Controller {
     async index(req, res, next) {
         try {
+            // throw new Error('abc')
             const tickets = await Ticket.findAll({ include: SoldTicket });
             res.render("client/home", {
                 req,
